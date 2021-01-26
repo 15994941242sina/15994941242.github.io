@@ -1,0 +1,50 @@
+# \u56FD\u9645\u5316\u5B9E\u73B0
+spring:
+  messages:
+    basename: i18n.login
+  # \u6A21\u7248\u5F15\u64CE\u7F13\u5B58\u5173\u95ED(\u548C\u56FD\u9645\u5316\u90FD\u6765\u81EA\u4E8Espring\uFF0C\u6240\u4EE5spring\u53EF\u4EE5\u7701\u53BB\uFF0C\u4F46\u662F\u8981\u6CE8\u610F\u7F29\u8FDB\uFF09
+  thymeleaf:
+    cache: false
+  # \u65F6\u95F4\u65E5\u671F\u683C\u5F0F\u5316
+  mvc:
+    format:
+      date: yyyy-MM-dd
+  # \u6570\u636E\u5E93\u8D44\u6E90\u914D\u7F6E
+  datasource:
+    username: root
+    password: zxf123456
+    url: jdbc:mysql://cdb-4vqmndsf.gz.tencentcdb.com:10054/supermarket?useSSL=false&useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # \u6307\u5B9A\u6570\u636E\u5E93\u8FDE\u63A5\u6C60\u7C7B\u578B
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #Spring Boot \u9ED8\u8BA4\u662F\u4E0D\u6CE8\u5165\u8FD9\u4E9B\u5C5E\u6027\u503C\u7684\uFF0C\u9700\u8981\u81EA\u5DF1\u7ED1\u5B9A
+    #druid \u6570\u636E\u6E90\u4E13\u6709\u914D\u7F6E
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+    #\u914D\u7F6E\u76D1\u63A7\u7EDF\u8BA1\u62E6\u622A\u7684filters\uFF0Cstat:\u76D1\u63A7\u7EDF\u8BA1\u3001log4j\uFF1A\u65E5\u5FD7\u8BB0\u5F55\u3001wall\uFF1A\u9632\u5FA1sql\u6CE8\u5165
+    #\u5982\u679C\u5141\u8BB8\u65F6\u62A5\u9519  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+    #\u5219\u5BFC\u5165 log4j \u4F9D\u8D56\u5373\u53EF\uFF0CMaven \u5730\u5740\uFF1Ahttps://mvnrepository.com/artifact/log4j/log4j
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+# \u6574\u5408mybatis
+mybatis:
+  # \u522B\u540D
+  type-aliases-package: com.example.pojo
+  # mapper.xml\u5730\u5740\u7ED1\u5B9A
+  mapper-locations: classpath:/mapper/*.xml
+

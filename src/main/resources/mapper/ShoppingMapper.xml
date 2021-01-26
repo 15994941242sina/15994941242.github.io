@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.commodity.ShoppingMapper">
+
+    <select id="queryAll" resultType="shopping">
+        SELECT * FROM supermarket.shopping
+    </select>
+
+    <select id="queryByID" parameterType="String" resultType="shopping">
+        SELECT * FROM supermarket.shopping where product_id = #{product_id}
+    </select>
+
+    <insert id="addShopping" parameterType="shopping">
+        INSERT INTO supermarket.shopping(product_id,product_name,product_count,product_export_price,product_total)
+        VALUES (#{product_id},#{product_name},#{product_count},#{product_export_price},#{product_total})
+    </insert>
+
+    <update id="updateCount">
+        UPDATE supermarket.shopping SET product_count = #{product_count},product_total=#{product_total} WHERE product_id = #{product_id}
+    </update>
+
+    <delete id="deleteShopping" parameterType="String">
+        DELETE FROM supermarket.shopping WHERE product_id = #{product_id}
+    </delete>
+
+    <delete id="deleteAll">
+        DELETE FROM supermarket.shopping
+    </delete>
+
+</mapper>

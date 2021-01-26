@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.VipMapper">
+
+    <select id="queryAll" resultType="vip">
+        select * from supermarket.vip
+    </select>
+
+    <insert id="addVip" parameterType="vip">
+        INSERT INTO supermarket.vip(vip_id,vip_name,vip_telephone,vip_address) VALUES (#{vip_id},#{vip_name},#{vip_telephone},#{vip_address})
+    </insert>
+
+    <update id="updateVip" parameterType="vip">
+        UPDATE supermarket.vip SET vip_name=#{vip_name},vip_telephone=#{vip_telephone},vip_address=#{vip_address} WHERE vip_id = #{vip_id}
+    </update>
+
+    <delete id="deleteVip" parameterType="int">
+        DELETE FROM supermarket.vip WHERE vip_id = #{vip_id}
+    </delete>
+
+    <select id="queryVip" parameterType="int" resultType="vip">
+        SELECT * FROM supermarket.vip WHERE vip_id = #{vip_id}
+    </select>
+
+
+
+</mapper>

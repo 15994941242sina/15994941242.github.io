@@ -25,6 +25,16 @@
         padding-top: 40px;
         padding-bottom: 40px;
     }
+    body {
+        background-image: url("/images/background2.jpg");
+        background-repeat:no-repeat ;
+        background-size:100% 100%;
+        background-attachment: fixed;
+     }
+    .imagebox{
+        width: 150px;
+        height: 150px;
+    }
     </style>
 </head>
 
@@ -34,10 +44,17 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><a href="../index.html"><img class="logo-img" th:src="@{/images/login.png}" alt="logo"></a><span class="splash-description" th:text="#{login.tlp}">Please enter your user information.</span></div>
+            <div class="card-header text-center">
+                <div align="center">
+                    <a href="../index.html">
+                        <img class="logo-img imagebox" th:src="@{/images/loginImg.png}" alt="logo">
+                    </a>
+                </div>
+                <span class="splash-description" th:text="#{login.tlp}">Please enter your user information.</span>
+            </div>
             <p align="center" style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
             <div class="card-body">
-                <form th:action="@{/welcome}">
+                <form th:action="@{/welcome}" th:method="post">
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="username" name="username" type="text" th:placeholder="#{login.username}" autocomplete="off">
                     </div>
@@ -52,13 +69,13 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block" th:text="#{login.btn}">Sign in</button>
                 </form>
             </div>
-            <div class="card-footer bg-white p-0  " style="width:100%">
-                <div class="card-footer-item card-footer-item-bordered" style="width:50%;float:left;text-align:center">
-                    <a href="#" class="footer-link" th:text="#{login.create}">Create An Account</a></div>
-                <div class="card-footer-item card-footer-item-bordered" style="width:50%;float:right;text-align:center">
-                    <a href="#" class="footer-link" th:text="#{login.forget}">Forgot Password</a>
-                </div>
-            </div>
+<!--            <div class="card-footer bg-white p-0  " style="width:100%">-->
+<!--                <div class="card-footer-item card-footer-item-bordered" style="width:50%;float:left;text-align:center">-->
+<!--                    <a href="/login/toaddUser" class="footer-link" th:text="#{login.create}">Create An Account</a></div>-->
+<!--                <div class="card-footer-item card-footer-item-bordered" style="width:50%;float:right;text-align:center">-->
+<!--                    <a href="#" class="footer-link" th:text="#{login.forget}">Forgot Password</a>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <!-- 这里传入参数不需要使用 ？使用 （key=value）-->
         <div align="center">
@@ -66,13 +83,12 @@
             <a class="btn btn-sm" th:href="@{/login(l='en_US')}">English</a>
         </div>
     </div>
-  
     <!-- ============================================================== -->
     <!-- end login page  -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
-    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script th:src="@{/vendor/jquery/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
 </body>
  
 </html>

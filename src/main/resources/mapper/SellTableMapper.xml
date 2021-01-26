@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.SellTableMapper">
+
+    <select id="querryAllSellTable" resultType="selltable">
+        SELECT * FROM supermarket.sell_table
+    </select>
+
+    <select id="querySellTableByName" parameterType="string" resultType="selltable">
+        SELECT * FROM supermarket.sell_table WHERE sell_name = #{sell_name}
+    </select>
+
+    <select id="querySellTableById" parameterType="string" resultType="selltable">
+        SELECT * FROM supermarket.sell_table WHERE sell_id = #{sell_id}
+    </select>
+
+    <select id="querySellTableByType" parameterType="String" resultType="selltable">
+        SELECT * FROM supermarket.sell_table WHERE sell_product_type = #{sell_type}
+    </select>
+
+    <select id="querySellTableBySomething" parameterType="String" resultType="selltable">
+        select * from supermarket.sell_table
+        <where>
+            sell_name like '%${sell_name}%'
+            <if test="sell_id != null and sell_id !=''">
+                and sell_id = #{sell_id}
+            </if>
+            <if test="sell_type != null and sell_type !=''">
+                and sell_product_type = #{sell_type}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addSellTable" parameterType="sellTable">
+        INSERT INTO supermarket.sell_table(sell_id,sell_name,sell_product_number,sell_product_type,sell_price,sell_total)
+        VALUES (#{sell_id},#{sell_name},#{sell_product_number},#{sell_product_type},#{sell_price},#{sell_total})
+    </insert>
+
+</mapper>

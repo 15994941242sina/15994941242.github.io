@@ -15,7 +15,7 @@ public class MyLocaleResolver implements LocaleResolver {
     @Override
     public Locale resolveLocale(HttpServletRequest httpServletRequest) {
         String language = httpServletRequest.getParameter("l");
-        System.out.println("【l】"+language);
+//        System.out.println("【l】"+language);
         Locale locale = Locale.getDefault(); // 如果没有获取到就使用系统默认的
         //如果请求链接不为空
         if (!StringUtils.isEmpty(language)){
